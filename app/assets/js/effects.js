@@ -17,8 +17,7 @@ $( document ).ready(function() {
         closeModal();
     });
 
-    $('[data-type="modal-trigger"]').on('click', function(e){
-
+    $(document).on('click', '[data-type="modal-trigger"]', function(e) {
         var action = $(this),
             posX = e.pageX - section.position().left - (modalbg.width() / 2),
             posY = e.pageY - section.position().top - (modalbg.height() / 2),
@@ -27,7 +26,7 @@ $( document ).ready(function() {
         provideData(action.data());
         modalbg.addClass('is-visible');
         animateLayer(modalbg, 20, true, 600);
-    });
+    })
 
     function retrieveScale(elem, offsetLeft, offsetTop) {
         var btnRadius = elem.width()/2,
