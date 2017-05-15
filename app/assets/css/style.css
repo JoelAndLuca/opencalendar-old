@@ -13,7 +13,6 @@ body, html {
     background: #EB7575;
 }
 
-
 .calendar-container {
     display: flex;
     flex-direction: row;
@@ -36,7 +35,6 @@ body, html {
     border-bottom-left-radius: 3px;
 }
 
-
 .calendar-container .calendar header.calendar-header {
     display: flex;
     justify-content: space-between;
@@ -45,7 +43,6 @@ body, html {
     padding: 60px;
     color: #fff;
 }
-
 
 .calendar-container .calendar header.calendar-header .year-before,
 .calendar-container .calendar header.calendar-header .year-after {
@@ -60,7 +57,6 @@ body, html {
     font-weight: bold;
 }
 
-
 .calendar-container .calendar section.content {
     display: flex;
     flex-direction: row;
@@ -74,7 +70,7 @@ body, html {
     align-items: center;
     justify-content: center;
     opacity: .3;
-    -webkit-transition: all .25s ease-in-out;-moz-transition: all .25s ease-in-out;-ms-transition: all .25s ease-in-out;-o-transition: all .25s ease-in-out;transition: all .25s ease-in-out;
+    -webkit-transition: all .25s ease-i-out;-moz-transition: all .25s ease-in-out;-ms-transition: all .25s ease-in-out;-o-transition: all .25s ease-in-out;transition: all .25s ease-in-out;
 }
 
 .calendar-container .calendar section.content  .switch:hover {
@@ -82,18 +78,16 @@ body, html {
     cursor: pointer;
 }
 
-
 .calendar-container .calendar section.content ul.weekdays {
     font-weight: bold;
 }
-
 
 .calendar-container .calendar section.content ul {
     display: flex;
     justify-content: space-between;
 }
 
-.calendar-container .calendar section.content ul li {
+.calendar-container .calendar section.content .dates ul li {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,30 +96,32 @@ body, html {
     padding: 5px;
     margin: 10px;
     font-weight: 500;
+    -webkit-transition: opacity .2s ease-in-out;-moz-transition: opacity .2s ease-in-out;-ms-transition: opacity .2s ease-in-out;-o-transition: opacity .2s ease-in-out;transition: opacity .2s ease-in-out;
 }
-
 
 .calendar-container .calendar section.content .dates ul li:not(.filler) {
     cursor: pointer;
     opacity: .6;
     border-radius: 50%;
-    -webkit-transition: opacity .2s ease-in-out;-moz-transition: opacity .2s ease-in-out;-ms-transition: opacity .2s ease-in-out;-o-transition: opacity .2s ease-in-out;transition: opacity .2s ease-in-out;
 }
 
-.calendar-container .calendar section.content .dates ul li:hover {
-    opacity: .85;
+.calendar-container .calendar section.content .dates ul li:not(.current):hover {
+    opacity: .6;
+    color: #fff;
+    background: #2c3e50;
 }
 
 .calendar-container .calendar section.content ul li.current,
-
-.calendar-container .calendar section.content ul li.current:hover{
+.calendar-container .calendar section.content ul li.current:hover {
     background: #2c3e50;
     color: #fff;
     font-weight: bold;
     opacity: 1;
 }
 
-
+.calendar-container .calendar section.content ul li.current:hover {
+    opacity: .8;
+}
 
 .calendar-container .calendar section.content ul li.active {
     background: #2c3e50;
@@ -164,7 +160,6 @@ body, html {
     color: #fff;
 }
 
-
 .calendar-container .events header.events-header h1 {
     font-size: 24px;
     font-weight: bold;
@@ -178,14 +173,9 @@ body, html {
     margin-top: 10px;
 }
 
-
-
 .calendar-container .events section.event-history {
     margin-top: 100px;
     text-align: center;
-}
-
-.calendar-container .events section.event-history .event {
 }
 
 .calendar-container .events section.event-history .event h1 {
@@ -209,16 +199,6 @@ body, html {
     background: #ecf0f1;
     margin: 20px auto;
 }
-
-
-
-
-
-
-
-
-
-
 
 .cd-section {
     position: relative;
@@ -266,6 +246,7 @@ body, html {
     height: 100%;
     z-index: 10;
 }
+
 .cd-modal-content h1 {
     margin-bottom: 10px;
     font-size: 20px;
