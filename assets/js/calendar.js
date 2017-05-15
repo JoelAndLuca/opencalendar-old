@@ -85,12 +85,7 @@ function initializeCalendar(value) {
         if((i+1) % 7 == 0 && i != 0) {
             week++;
         }
-    }
-
-    // Clear unused week-row
-    if($(".dates ul[week=5]").find(".filler").length == 7) {
-        $(".dates ul[week=5]").remove();
-    }
+    }   
 }
 
 function clearCalendar() {
