@@ -56,4 +56,6 @@ function initializeCalendar() {
         $("ul[week=" + week + "]").append("<li class='filler'></li>");
         i++;
     }
+
+    $(".events-header").append("<p>" + moment().format('dddd Mo') + "</p>");
 }
