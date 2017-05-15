@@ -18,16 +18,12 @@
                 <header class="calendar-header">
 
                     <div class="year-before">
-                        2016
                     </div>
 
                     <div class="year-current">
-                        <span>2017</span>
-                        <span>February</span>
                     </div>
 
                     <div class="year-after">
-                        2018
                     </div>
 
                 </header>
@@ -41,67 +37,10 @@
 
                     <div>
                         <ul class="weekdays">
-                            <li>Mon</li>
-                            <li>Tue</li>
-                            <li>Wed</li>
-                            <li>Thu</li>
-                            <li>Fri</li>
-                            <li>Sat</li>
-                            <li>Sun</li>
+                            <!-- Populated with calendar.js -->
                         </ul>
-
                         <div class="dates">
-                            <ul>
-                                <li></li>
-                                <li></li>
-                                <li>1</li>
-                                <li>2</li>
-                                <li>3</li>
-                                <li>4</li>
-                                <li>5</li>
-                            </ul>
-
-
-                            <ul>
-                                <li>6</li>
-                                <li>7</li>
-                                <li>8</li>
-                                <li>9</li>
-                                <li>10</li>
-                                <li>11</li>
-                                <li>12</li>
-                            </ul>
-
-
-                            <ul>
-                                <li>13</li>
-                                <li>14</li>
-                                <li class="active">15</li>
-                                <li>16</li>
-                                <li>17</li>
-                                <li>18</li>
-                                <li>19</li>
-                            </ul>
-
-                            <ul>
-                                <li>20</li>
-                                <li>21</li>
-                                <li>22</li>
-                                <li>23</li>
-                                <li class="current">24</li>
-                                <li>25</li>
-                                <li>26</li>
-                            </ul>
-
-                            <ul>
-                                <li>27</li>
-                                <li class="active">28</li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
+                            <!-- Populated with calendar.js -->
                         </div>
                     </div>
 
@@ -162,11 +101,16 @@
         
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js"></script>
+    <script>
+        moment().format();
+    </script>
     <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
     <script src="assets/js/velocity.min.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/calendar.js"></script>
 </body>
 </html>

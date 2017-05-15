@@ -105,7 +105,7 @@ body, html {
 }
 
 
-.calendar-container .calendar section.content .dates ul li {
+.calendar-container .calendar section.content .dates ul li:not(.filler) {
     cursor: pointer;
     opacity: .6;
     border-radius: 50%;
