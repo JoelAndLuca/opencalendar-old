@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Open Calendar</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+<body>
+    <div class="container">
+
+        <section class="calendar-container">
+
+            <section class="calendar">
+                <header class="calendar-header">
+
+                    <div class="year-before">
+                        2016
+                    </div>
+
+                    <div class="year-current">
+                        <span>2017</span>
+                        <span>February</span>
+                    </div>
+
+                    <div class="year-after">
+                        2018
+                    </div>
+
+                </header>
+
+                <section class="content">
+
+
+                    <div class="switch switch-decrease">
+                        <i class="fa fa-chevron-left"></i>
+                    </div>
+
+                    <div>
+                        <ul class="weekdays">
+                            <li>Mon</li>
+                            <li>Tue</li>
+                            <li>Wed</li>
+                            <li>Thu</li>
+                            <li>Fri</li>
+                            <li>Sat</li>
+                            <li>Sun</li>
+                        </ul>
+
+                        <div class="dates">
+                            <ul>
+                                <li></li>
+                                <li></li>
+                                <li>1</li>
+                                <li>2</li>
+                                <li>3</li>
+                                <li>4</li>
+                                <li>5</li>
+                            </ul>
+
+
+                            <ul>
+                                <li>6</li>
+                                <li>7</li>
+                                <li>8</li>
+                                <li>9</li>
+                                <li>10</li>
+                                <li>11</li>
+                                <li>12</li>
+                            </ul>
+
+
+                            <ul>
+                                <li>13</li>
+                                <li>14</li>
+                                <li class="active">15</li>
+                                <li>16</li>
+                                <li>17</li>
+                                <li>18</li>
+                                <li>19</li>
+                            </ul>
+
+                            <ul>
+                                <li>20</li>
+                                <li>21</li>
+                                <li>22</li>
+                                <li>23</li>
+                                <li class="current">24</li>
+                                <li>25</li>
+                                <li>26</li>
+                            </ul>
+
+                            <ul>
+                                <li>27</li>
+                                <li class="active">28</li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="switch switch-increase">
+                        <i class="fa fa-chevron-right" ></i>
+                    </div>
+
+                </section>
+
+            </section>
+
+            <section class="events cd-section">
+
+                <div class="cd-modal-bg"></div>
+
+                <div class="cd-modal-content">
+                    <i class="fa fa-times close" aria-hidden="true"></i>
+                    <h1 id="cd-modal-content-title">Lorem ipsum dolor</h1>
+
+                    <div id="cd-modal-content-location"><i class="fa fa-map-pin" aria-hidden="true"></i> <span>St. Gallen</span></div>
+
+                    <div id="cd-modal-content-time"><i class="fa fa-clock-o" aria-hidden="true"></i> <span>21:00 Uhr</span></div>
+                </div>
+
+                <header class="events-header">
+
+                    <h1>Events</h1>
+                    <p>at 10th of February</p>
+                </header>
+
+                <section class="event-history">
+
+                    <div class="event" data-type="modal-trigger" data-title="Tomorrowland" data-location="Boom, Belgium" data-time="21:00">
+                        <h1>Lorem Event</h1>
+                        <p>16 Days Until</p>
+                    </div>
+
+                    <hr />
+
+                    <div class="event"  data-type="modal-trigger" data-title="Parookaville" data-location="Germany" data-time="22:00">
+                        <h1>Soos meem</h1>
+                        <p>12 Days Ago</p>
+                    </div>
+
+                    <hr/>
+
+                    <div class="event"  data-type="modal-trigger" data-title="Electric Love" data-location="Salzburgring, Austria" data-time="23:30">
+                        <h1>Lorem ipsum</h1>
+                        <p>16 Days Ago</p>
+                    </div>
+
+                </section>
+
+            </section>
+
+        </section>
+        
+    </div>
+
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script src="assets/js/velocity.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
