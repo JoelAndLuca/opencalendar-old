@@ -13,6 +13,10 @@ body, html {
     background: #EB7575;
 }
 
+.hidden {
+    display: none;
+}
+
 .calendar-container {
     display: flex;
     flex-direction: row;
@@ -36,17 +40,40 @@ body, html {
 }
 
 .calendar-container .calendar header.calendar-header {
+    background-color: #3F4045;
+    color: #fff;
+}
+
+.calendar-container .calendar header.calendar-header .calendar-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #3F4045;
-    padding: 60px;
-    color: #fff;
+    padding: 60px 60px 30px 60px;
+}
+
+.year-before, .year-after {
+    opacity: .6;
+}
+
+.year-before:hover, .year-after:hover {
+    opacity: 1;
+}
+
+.calendar-container .calendar header.calendar-header .back-to-today {
+    padding: 0 60px 30px 60px;
+    text-align: center;
+    cursor: pointer;
+    opacity: .6;
+}
+
+.calendar-container .calendar header.calendar-header .back-to-today:hover {
+    opacity: 1;
 }
 
 .calendar-container .calendar header.calendar-header .year-before,
 .calendar-container .calendar header.calendar-header .year-after {
     font-size: 20px;
+    cursor: pointer;
 }
 
 .calendar-container .calendar header.calendar-header .year-current {
@@ -80,6 +107,11 @@ body, html {
 
 .calendar-container .calendar section.content ul.weekdays {
     font-weight: bold;
+}
+
+.calendar-container .calendar section.content ul.weekdays li {
+    margin: 10px;
+    padding: 5px;
 }
 
 .calendar-container .calendar section.content ul {

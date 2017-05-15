@@ -30,6 +30,40 @@ $(".previous").click(function() {
     initializeCalendar(value);
 });
 
+$(".back-to-today").click(function() {
+    var value = moment();
+    initializeCalendar(value);
+});
+
+$(document).on("click", ".year-after", function() {
+    var value = moment();
+    value.month(0);
+    value.date(1);
+    var year = $(".year-current span[year-val]").attr("year-val");
+    year++;
+    value.year(year);
+    initializeCalendar(value);
+});
+
+$(document).on("click", ".year-before", function() {
+    var value = moment();
+    value.month(0);
+    value.date(1);
+    var year = $(".year-current span[year-val]").attr("year-val");
+    year--;
+    value.year(year);
+    console.log(value);
+    initializeCalendar(value);
+});
+
+function showAdditionalInformation() {
+    $(".back-to-today").slideDown();
+}
+
+function hideAdditionalInformation() {
+    $(".back-to-today").slideUp();
+}
+
 function initializeCalendar(value) {
     clearCalendar();
     moment.locale(window.navigator.language);
@@ -39,6 +73,9 @@ function initializeCalendar(value) {
 
     if(displayCurrent) {
         value.date(today.date());
+        hideAdditionalInformation();
+    } else {
+        showAdditionalInformation();
     }
 
     var lastYear = value.year() - 1;
