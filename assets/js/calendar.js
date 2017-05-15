@@ -49,40 +49,47 @@ function initializeCalendar(value) {
         $("ul.weekdays").append("<li>" + day + "</li>");
     });
 
-    // Build calendar
-    var firstWeekDay = value.day();
-    var week = 1;
-
+    // Generate the calendar
+    // Calculate dates
+    var dates = [];
     var liFiller = "<li class='filler'></li>";
-
-    for(i = 1; i <= daysInMonth; i++) {
-        if(i == 1) {
-            $("div.dates").append("<ul week=" + week + ">");
-        }
-
-        if(firstWeekDay > i) {
-            $("ul[week=" + week + "]").append(liFiller);    
+    var firstDate = value.day();
+    var dateCount = 1;
+    for(i = 1; i <= (6*7); i++) {
+        var contentString = "";
+        if(i < firstDate || dateCount > daysInMonth) {
+            contentString = liFiller;
         } else {
             if(i == value.date() && displayCurrent) {
-                $("ul[week=" + week + "]").append("<li class='current'>" + i + "</li>");
+                contentString = "<li class='current'>" + dateCount + "</li>";
             } else {
-                $("ul[week=" + week + "]").append("<li>" + i + "</li>");
+                contentString = "<li>" + dateCount + "</li>";
             }
+            dateCount  ++;
         }
-                
-        if(i % 7 == 0) {
-            week ++;
-            $("div.dates").append("</ul>");
-            if(i != 31)
-            {
-                $("div.dates").append("<ul week=" + week + ">");
-            }
+        var date = {
+            content: contentString
+        };
+        dates.push(date);
+    }
+
+    // Build rows
+    for(i = 0; i < 6; i++) {
+        $("div.dates").append("<ul week=" + i + "></ul>");
+    }
+
+    // Buld dates
+    var week = 0;
+    for(i = 0; i < (6*7); i++) {
+        $(".dates ul[week=" + week + "]").append(dates[i].content);
+        if((i+1) % 7 == 0 && i != 0) {
+            week++;
         }
     }
-    i--;
-    while(i % 7 != 0) {
-        $("ul[week=" + week + "]").append(liFiller);
-        i++;
+
+    // Clear unused week-row
+    if($(".dates ul[week=5]").find(".filler").length == 7) {
+        $(".dates ul[week=5]").remove();
     }
 }
 
