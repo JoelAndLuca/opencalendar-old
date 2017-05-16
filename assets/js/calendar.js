@@ -49,6 +49,7 @@ function initializeCalendar(value) {
     $(".events-header").append("<p>" + moment().format('dddd Mo') + "</p>");
     
     // Build weekdays.
+    $(".calendar-content").append("<ul class='weekdays'></ul>");
     weekdays.forEach(function(day) {
         $("ul.weekdays").append("<li>" + day + "</li>");
     });
@@ -82,6 +83,7 @@ function initializeCalendar(value) {
     }
 
     // Build rows
+    $(".calendar-content").append("<div class='dates'></div>");
     for(i = 0; i < 6; i++) {
         $("div.dates").append("<ul week=" + i + "></ul>");
     }
@@ -97,6 +99,7 @@ function initializeCalendar(value) {
 }
 
 function clearCalendar() {
+    $(".calendar-content").empty();
     $(".year-before").empty();
     $(".year-current").empty();
     $(".year-after").empty();
