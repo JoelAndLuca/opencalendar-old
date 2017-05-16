@@ -1,4 +1,5 @@
 function getEvents(callback) {
+    $.ajaxSetup({ cache: false });
     $.ajax({url:"https://raw.githubusercontent.com/lucahuber/opencalendar/master/server/sample-data.json", 
         success: function(response) {
             callback(JSON.parse(response));

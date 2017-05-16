@@ -114,5 +114,12 @@ function clearCalendar() {
 }
 
 function initializeEvents(data) {
-    console.log(data);
+    var i = 0;
+    data.forEach(function(event) {
+        $(".event-history").append("<div class='event' data-type='modal-trigger' data-title='" + event.title + "' data-location='" + event.location + "' data-time='" + event.time + "' data-event='" + i + "'></div>");
+        var eventContainer = $(".event[data-event=" + i + "]");
+        eventContainer.append("<h1></h1>");
+        eventContainer.append("<p></p>");
+        i++;
+    });
 }
