@@ -32,6 +32,10 @@ function initializeCalendar(value) {
     var today = moment();
     var displayCurrent = (today.month() == value.month()) && (today.year() == value.year());
 
+    if(displayCurrent) {
+        value.date(today.date());
+    }
+
     var lastYear = value.year() - 1;
     var nextYear = value.year() + 1;
     var weekdays = moment.weekdaysShort(true);
@@ -53,7 +57,11 @@ function initializeCalendar(value) {
     // Calculate dates
     var dates = [];
     var liFiller = "<li class='filler'></li>";
-    var firstDate = value.day();
+    var firstDayOfMonth = moment();
+    firstDayOfMonth.day(1);
+    firstDayOfMonth.month(value.month());
+    firstDayOfMonth.year(value.year());
+    var firstDate = firstDayOfMonth.day();
     var dateCount = 1;
     for(i = 1; i <= (6*7); i++) {
         var contentString = "";
