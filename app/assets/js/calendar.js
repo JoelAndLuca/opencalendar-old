@@ -51,6 +51,7 @@ function initializeCalendar(value) {
     $(".year-current").append("<span year-val='" + value.year() + "'>" + value.year() + "</span>");
     $(".year-current").append("<span month-val='" + value.month() + "'>" + moment.months()[value.month()] + "</span>");
     $(".year-after").append(nextYear);
+    $(".events-header").append("<h1>Upcoming events</h1>");
     $(".events-header").append("<p>" + moment().format('dddd Mo') + "</p>");
     
     // Build weekdays.
@@ -116,10 +117,13 @@ function clearCalendar() {
 function initializeEvents(data) {
     var i = 0;
     data.forEach(function(event) {
-        $(".event-history").append("<div class='event' data-type='modal-trigger' data-title='" + event.title + "' data-location='" + event.location + "' data-time='" + event.time + "' data-event='" + i + "'></div>");
-        var eventContainer = $(".event[data-event=" + i + "]");
-        eventContainer.append("<h1></h1>");
-        eventContainer.append("<p></p>");
+        $(".event-history").append("<div class='event' data-type='modal-trigger' data-title='" + event.title + "' data-location='" + event.location + "' data-time='" + event.time + "' event-id='" + i + "'></div>");
+        var eventContainer = $(".event[event-id=" + i + "]");
+        eventContainer.append("<h1>" + event.title + "</h1>");
+        eventContainer.append("<p>" + moment(event.date, "DD.MM.YYYY").from(moment()) + "</p>");
+        if(data.length > i+1) {
+            $(".event-history").append("<hr/>");
+        }
         i++;
     });
 }

@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-
     var modalbg = $('.cd-modal-bg'),
         content = $('.cd-modal-content'),
         section = $('.cd-section');
