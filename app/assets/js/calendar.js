@@ -1,7 +1,12 @@
 $(document).ready(function() {
+    initializeComponents();
+});
+
+function initializeComponents() {
     var now = moment();
     initializeCalendar(now);
-});
+    getEvents(initializeEvents);
+}
 
 $(".next").click(function() {
     var value = moment();
@@ -106,4 +111,8 @@ function clearCalendar() {
     $("ul.weekdays").empty();
     $("div.dates").empty();
     $(".events-header").empty();
+}
+
+function initializeEvents(data) {
+    console.log(data);
 }
