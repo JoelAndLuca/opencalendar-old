@@ -137,7 +137,7 @@ body, html {
     border-radius: 50%;
 }
 
-.calendar-container .calendar section.content .dates ul li:not(.current):not(.has-event):hover {
+.calendar-container .calendar section.content .dates ul li:not(.current):not(.has-event):not(.filler):hover {
     opacity: .6;
     color: #fff;
     background: #2c3e50;
