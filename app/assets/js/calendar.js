@@ -1,10 +1,10 @@
 $(document).ready(function() {
     var now = moment();
-    initializeComponents(now);
+    initializeComponents(now, 0);
 });
 
-function initializeComponents(value) {
-    initializeCalendar(value);
+function initializeComponents(value, animationDirection) {
+    initializeCalendar(value, animationDirection);
     getEvents(initializeEvents);
 }
 
@@ -16,7 +16,7 @@ $(".next").click(function() {
     month ++;
     value.month(month);
     value.date(1);
-    initializeComponents(value);
+    initializeComponents(value, 1);
 });
 
 $(".previous").click(function() {
@@ -27,12 +27,22 @@ $(".previous").click(function() {
     month --;
     value.month(month);
     value.date(1);
-    initializeComponents(value);
+    initializeComponents(value, -1);
 });
 
 $(".back-to-today").click(function() {
     var value = moment();
-    initializeComponents(value);
+    var month = $(".year-current span[month-val]").attr("month-val");
+    var year = $(".year-current span[year-val]").attr("year-val");
+    var currentVal = moment();
+    currentVal.date(1);
+    currentVal.month(month);
+    currentVal.year(year);
+    var animationDirection = 1;
+    if(value.isBefore(currentVal)) {
+        animationDirection = -1;
+    }
+    initializeComponents(value, animationDirection);
 });
 
 $(document).on("click", ".year-after", function() {
@@ -42,7 +52,7 @@ $(document).on("click", ".year-after", function() {
     var year = $(".year-current span[year-val]").attr("year-val");
     year++;
     value.year(year);
-    initializeComponents(value);
+    initializeComponents(value, 1);
 });
 
 $(document).on("click", ".year-before", function() {
@@ -53,7 +63,7 @@ $(document).on("click", ".year-before", function() {
     year--;
     value.year(year);
     console.log(value);
-    initializeComponents(value);
+    initializeComponents(value, -1);
 });
 
 function showAdditionalInformation() {
@@ -64,8 +74,8 @@ function hideAdditionalInformation() {
     $(".back-to-today").slideUp();
 }
 
-function initializeCalendar(value) {
-    clearCalendar();
+function initializeCalendar(value, animationDirection) {
+    clearCalendar(animationDirection);
     moment.locale(window.navigator.language);
     
     var today = moment();
@@ -92,6 +102,7 @@ function initializeCalendar(value) {
     $(".events-header").append("<p>" + moment().format('dddd Mo') + "</p>");
     
     // Build weekdays.
+    $(".slide").append("<div class='calendar-content'></div>");
     $(".calendar-content").append("<ul class='weekdays'></ul>");
     weekdays.forEach(function(day) {
         $("ul.weekdays").append("<li>" + day + "</li>");
@@ -139,15 +150,24 @@ function initializeCalendar(value) {
             week++;
         }
     }   
+
+    if(animationDirection == -1) {
+        $(".slide").show("slide", { direction: "left" }, 300);
+    } else if(animationDirection == 1) {
+        $(".slide").show("slide", { direction: "right" }, 300);
+    }
 }
 
-function clearCalendar() {
-    $(".calendar-content").empty();
+function clearCalendar(animationDirection) {
+    if(animationDirection == -1) {
+        $(".slide").hide("slide", { direction: "right" }, 300);
+    } else if(animationDirection == 1) {
+        $(".slide").hide("slide", { direction: "left" }, 300);
+    }
+    $(".slide").empty();
     $(".year-before").empty();
     $(".year-current").empty();
     $(".year-after").empty();
-    $("ul.weekdays").empty();
-    $("div.dates").empty();
     $(".events-header").empty();
 }
 

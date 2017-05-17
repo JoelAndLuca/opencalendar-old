@@ -100,6 +100,11 @@ body, html {
     -webkit-transition: all .25s ease-i-out;-moz-transition: all .25s ease-in-out;-ms-transition: all .25s ease-in-out;-o-transition: all .25s ease-in-out;transition: all .25s ease-in-out;
 }
 
+.calendar-container .calendar section.content .slide {
+    min-width: 420px;
+    min-height: 409px;
+}
+
 .calendar-container .calendar section.content  .switch:hover {
     opacity: 1;
     cursor: pointer;
