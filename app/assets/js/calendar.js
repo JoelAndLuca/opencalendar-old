@@ -166,7 +166,7 @@ function setEventHistory(data) {
         $(".event-history").append("<div class='event' data-type='modal-trigger' data-title='" + event.title + "' data-location='" + event.location + "' data-time='" + event.time + "' event-id='" + i + "'></div>");
         var eventContainer = $(".event[event-id=" + i + "]");
         eventContainer.append("<h1>" + event.title + "</h1>");
-        eventContainer.append("<p>" + moment(event.date, "DD.MM.YYYY").from(moment()) + "</p>");
+        eventContainer.append("<p>" + moment().to(moment(event.date, "DD.MM.YYYY")) + "</p>");
         if(data.length > i+1) {
             $(".event-history").append("<hr/>");
         }

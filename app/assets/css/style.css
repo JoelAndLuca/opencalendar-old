@@ -143,27 +143,27 @@ body, html {
     background: #2c3e50;
 }
 
-.calendar-container .calendar section.content ul li.current {
+.calendar-container .calendar section.content .calendar-content ul li.current {
     background: #2c3e50;
     color: #fff;
     font-weight: bold;
     opacity: 1;
 }
 
-.calendar-container .calendar section.content ul li.has-event {
+.calendar-container .calendar section.content .calendar-content ul li.has-event {
     background: #EB7575;
     color: #fff;
     font-weight: bold;
     opacity: 1;
 }
 
-.calendar-container .calendar section.content ul li.current:hover,
-.calendar-container .calendar section.content ul li.has-event:hover
+.calendar-container .calendar section.content .calendar-content ul li.current:hover,
+.calendar-container .calendar section.content .calendar-content ul li.has-event:hover
 {
     opacity: .8;
 }
 
-.calendar-container .calendar section.content ul li.active {
+.calendar-container .calendar section.content .calendar-content ul li.active {
     background: #2c3e50;
     opacity: .7;
     font-weight: bold;
