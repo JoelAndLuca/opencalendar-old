@@ -178,7 +178,7 @@ function setEventsInCalendar(data) {
     // Set dates in calendar.
     data.forEach(function(event) {
         var date = moment(event.date, "DD.MM.YYYY");
-        if(date.month() == moment().month() && date.year() == moment().year()) {
+        if((date.month() == $(".year-current span[month-val]").attr("month-val")) && (date.year() == $(".year-current span[year-val]").attr("year-val"))) {
             // In this calendar-scope - display!
             var day = date.date();
             $(".dates ul li[date=" + day + "]").addClass("has-event");
