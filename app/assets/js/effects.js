@@ -10,7 +10,10 @@ $( document ).ready(function() {
     }
 
     $(document).keyup(function(e) {
-        if (e.keyCode === 27) closeModal();
+        if (e.keyCode === 27) {
+             closeModal();
+             $(".dates ul li:not(.filler)").removeClass("current");
+        }
     });
 
     $('.cd-modal-content .close').on('click', function() {
@@ -45,6 +48,7 @@ $( document ).ready(function() {
 
     function provideData(data) {
         content.find('#cd-modal-content-title').text(data['title']);
+        content.find('#cd-modal-content-description').text(data['description']);
         content.find('#cd-modal-content-location span').text(data['location']);
         content.find('#cd-modal-content-time span').text(data['time']);
     }

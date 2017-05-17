@@ -98,9 +98,7 @@ function initializeCalendar(value, animationDirection) {
     $(".year-current").append("<span year-val='" + value.year() + "'>" + value.year() + "</span>");
     $(".year-current").append("<span month-val='" + value.month() + "'>" + moment.months()[value.month()] + "</span>");
     $(".year-after").append(nextYear);
-    $(".events-header").append("<h1>Upcoming events</h1>");
-    $(".events-header").append("<p>" + moment().format('dddd Mo') + "</p>");
-    
+        
     // Build weekdays.
     $(".slide").append("<div class='calendar-content'></div>");
     $(".calendar-content").append("<ul class='weekdays'></ul>");
@@ -124,7 +122,7 @@ function initializeCalendar(value, animationDirection) {
             contentString = liFiller;
         } else {
             if(i == value.date() && displayCurrent) {
-                contentString = "<li class='current' date='" + dateCount + "'>" + dateCount + "</li>";
+                contentString = "<li class='current today' date='" + dateCount + "'>" + dateCount + "</li>";
             } else {
                 contentString = "<li date='" + dateCount + "'>" + dateCount + "</li>";
             }
@@ -168,7 +166,6 @@ function clearCalendar(animationDirection) {
     $(".year-before").empty();
     $(".year-current").empty();
     $(".year-after").empty();
-    $(".events-header").empty();
 }
 
 function initializeEvents(data) {
@@ -179,15 +176,41 @@ function initializeEvents(data) {
     setEventsInCalendar(data);
 }
 
-function setEventHistory(data) {
+function setEventHistory(data, selectedDate) {
+    $(".events-header").empty();
+    var events = data;
+    if(selectedDate == undefined) {
+        // Set upcoming events
+        $(".events-header").append("<h1>Upcoming events</h1>");
+    } else {
+        // Set events for selected day
+        $(".events-header").append("<h1>" + selectedDate.format("DD.MM.YYYY") + "</h1>");
+        var originalData = events;
+        events = originalData.filter(function(event) {
+            var parsedDate = moment(event.date, "DD.MM.YYYY");
+            var day = parsedDate.date();
+            var month = parsedDate.month();
+            var year = parsedDate.year();
+            return (selectedDate.date() == day) && (selectedDate.month() == month) && (selectedDate.year() == year);
+        });
+        if(events.length == 0) {
+            // Display add new event
+        }
+    }
+    
+    // Set the history content
     var i = 0;
     $(".event-history").empty();
-    data.forEach(function(event) {
-        $(".event-history").append("<div class='event' data-type='modal-trigger' data-title='" + event.title + "' data-location='" + event.location + "' data-time='" + event.time + "' event-id='" + i + "'></div>");
+    events.forEach(function(event) {
+        var timeInformation = event.time;
+        if(timeInformation == "") {
+            timeInformation = "Ganzer Tag";
+        }
+        $(".event-history").append("<div class='event' data-type='modal-trigger' data-title='" + event.title + "' data-location='" + event.location + "' data-time='" + timeInformation + "' data-description='" + event.description + "' event-id='" + i + "'></div>");
         var eventContainer = $(".event[event-id=" + i + "]");
         eventContainer.append("<h1>" + event.title + "</h1>");
         eventContainer.append("<p>" + moment().to(moment(event.date, "DD.MM.YYYY")) + "</p>");
-        if(data.length > i+1) {
+        if(events.length > i+1) {
             $(".event-history").append("<hr/>");
         }
         i++;

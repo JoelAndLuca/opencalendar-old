@@ -155,6 +155,11 @@ body, html {
     opacity: .6;
 }
 
+.calendar-container .calendar section.content .calendar-content ul li.today {
+    border: 2px solid #2c3e50;
+    opacity: .6;
+}
+
 .calendar-container .calendar section.content .calendar-content ul li.has-event {
     background: #EB7575;
     color: #fff;
@@ -279,6 +284,7 @@ body, html {
 }
 
 .cd-modal-content {
+    margin: 30px;
     display: none;
     justify-content: center;
     align-items: center;
@@ -287,22 +293,28 @@ body, html {
     color: #fff;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
     z-index: 10;
+    text-align: center;
 }
 
 .cd-modal-content h1 {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 25px;
+}
+
+.cd-modal-content h2 {
     font-size: 20px;
+    margin-bottom: 15px;
 }
 
 .cd-modal-content div i {
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 .cd-modal-content div {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .cd-modal-content p:last-child {
