@@ -1,10 +1,10 @@
 $(document).ready(function() {
-    initializeComponents();
+    var now = moment();
+    initializeComponents(now);
 });
 
-function initializeComponents() {
-    var now = moment();
-    initializeCalendar(now);
+function initializeComponents(value) {
+    initializeCalendar(value);
     getEvents(initializeEvents);
 }
 
@@ -16,7 +16,7 @@ $(".next").click(function() {
     month ++;
     value.month(month);
     value.date(1);
-    initializeCalendar(value);
+    initializeComponents(value);
 });
 
 $(".previous").click(function() {
@@ -27,12 +27,12 @@ $(".previous").click(function() {
     month --;
     value.month(month);
     value.date(1);
-    initializeCalendar(value);
+    initializeComponents(value);
 });
 
 $(".back-to-today").click(function() {
     var value = moment();
-    initializeCalendar(value);
+    initializeComponents(value);
 });
 
 $(document).on("click", ".year-after", function() {
@@ -42,7 +42,7 @@ $(document).on("click", ".year-after", function() {
     var year = $(".year-current span[year-val]").attr("year-val");
     year++;
     value.year(year);
-    initializeCalendar(value);
+    initializeComponents(value);
 });
 
 $(document).on("click", ".year-before", function() {
@@ -53,7 +53,7 @@ $(document).on("click", ".year-before", function() {
     year--;
     value.year(year);
     console.log(value);
-    initializeCalendar(value);
+    initializeComponents(value);
 });
 
 function showAdditionalInformation() {
@@ -113,9 +113,9 @@ function initializeCalendar(value) {
             contentString = liFiller;
         } else {
             if(i == value.date() && displayCurrent) {
-                contentString = "<li class='current'>" + dateCount + "</li>";
+                contentString = "<li class='current' date='" + dateCount + "'>" + dateCount + "</li>";
             } else {
-                contentString = "<li>" + dateCount + "</li>";
+                contentString = "<li date='" + dateCount + "'>" + dateCount + "</li>";
             }
             dateCount  ++;
         }
@@ -152,7 +152,16 @@ function clearCalendar() {
 }
 
 function initializeEvents(data) {
+    // Add all events to event-list.
+    setEventHistory(data);
+
+    // Add all events to calendar.
+    setEventsInCalendar(data);
+}
+
+function setEventHistory(data) {
     var i = 0;
+    $(".event-history").empty();
     data.forEach(function(event) {
         $(".event-history").append("<div class='event' data-type='modal-trigger' data-title='" + event.title + "' data-location='" + event.location + "' data-time='" + event.time + "' event-id='" + i + "'></div>");
         var eventContainer = $(".event[event-id=" + i + "]");
@@ -162,5 +171,17 @@ function initializeEvents(data) {
             $(".event-history").append("<hr/>");
         }
         i++;
+    });
+}
+
+function setEventsInCalendar(data) {
+    // Set dates in calendar.
+    data.forEach(function(event) {
+        var date = moment(event.date, "DD.MM.YYYY");
+        if(date.month() == moment().month() && date.year() == moment().year()) {
+            // In this calendar-scope - display!
+            var day = date.date();
+            $(".dates ul li[date=" + day + "]").addClass("has-event");
+        }
     });
 }
