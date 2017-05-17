@@ -138,7 +138,7 @@ body, html {
 }
 
 .calendar-container .calendar section.content .dates ul li:not(.current):not(.has-event):not(.filler):hover {
-    opacity: .6;
+    opacity: 1;
     color: #fff;
     background: #2c3e50;
 }
@@ -147,20 +147,20 @@ body, html {
     background: #2c3e50;
     color: #fff;
     font-weight: bold;
-    opacity: 1;
+    opacity: .6;
 }
 
 .calendar-container .calendar section.content .calendar-content ul li.has-event {
     background: #EB7575;
     color: #fff;
     font-weight: bold;
-    opacity: 1;
+    opacity: .6;
 }
 
 .calendar-container .calendar section.content .calendar-content ul li.current:hover,
 .calendar-container .calendar section.content .calendar-content ul li.has-event:hover
 {
-    opacity: .8;
+    opacity: 1;
 }
 
 .calendar-container .calendar section.content .calendar-content ul li.active {
