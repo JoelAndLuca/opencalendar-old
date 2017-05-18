@@ -170,7 +170,7 @@ function clearCalendar(animationDirection) {
 
 function initializeEvents(data) {
     // Add all events to event-list.
-    setEventHistory(data);
+    setEventHistory(data, moment());
 
     // Add all events to calendar.
     setEventsInCalendar(data);
@@ -179,23 +179,19 @@ function initializeEvents(data) {
 function setEventHistory(data, selectedDate) {
     $(".events-header").empty();
     var events = data;
-    if(selectedDate == undefined) {
-        // Set upcoming events
-        $(".events-header").append("<h1>Upcoming events</h1>");
-    } else {
-        // Set events for selected day
-        $(".events-header").append("<h1>" + selectedDate.format("DD.MM.YYYY") + "</h1>");
-        var originalData = events;
-        events = originalData.filter(function(event) {
-            var parsedDate = moment(event.date, "DD.MM.YYYY");
-            var day = parsedDate.date();
-            var month = parsedDate.month();
-            var year = parsedDate.year();
-            return (selectedDate.date() == day) && (selectedDate.month() == month) && (selectedDate.year() == year);
-        });
-        if(events.length == 0) {
-            // Display add new event
-        }
+    // Set events for selected day
+    $(".events-header").append("<h1>Events</h1>");
+    $(".events-header").append("<h2>" + selectedDate.format("DD.MM.YYYY") + "</h2>");
+    var originalData = events;
+    events = originalData.filter(function(event) {
+        var parsedDate = moment(event.date, "DD.MM.YYYY");
+        var day = parsedDate.date();
+        var month = parsedDate.month();
+        var year = parsedDate.year();
+        return (selectedDate.date() == day) && (selectedDate.month() == month) && (selectedDate.year() == year);
+    });
+    if(events.length == 0) {
+        // Display add new event
     }
     
     // Set the history content
@@ -210,11 +206,13 @@ function setEventHistory(data, selectedDate) {
         var eventContainer = $(".event[event-id=" + i + "]");
         eventContainer.append("<h1>" + event.title + "</h1>");
         eventContainer.append("<p>" + moment().to(moment(event.date, "DD.MM.YYYY")) + "</p>");
-        if(events.length > i+1) {
-            $(".event-history").append("<hr/>");
-        }
+        $(".event-history").append("<hr/>");
         i++;
     });
+
+    // Set the actions
+    $(".event-history").append("<div class='event-controls'></div>")
+    $(".event-controls").append("<i class='fa fa-plus' aria-hidden='true'></i> New Event");
 }
 
 function setEventsInCalendar(data) {

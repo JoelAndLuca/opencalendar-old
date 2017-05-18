@@ -142,22 +142,28 @@ body, html {
     border-radius: 50%;
 }
 
-.calendar-container .calendar section.content .dates ul li:not(.current):not(.has-event):not(.filler):hover {
+.calendar-container .calendar section.content .dates ul li:not(.current):not(.has-event):not(.filler):not(.today):hover {
     opacity: 1;
     color: #fff;
-    background: #2c3e50;
+    background: #AFD5AA;
 }
 
 .calendar-container .calendar section.content .calendar-content ul li.current {
-    background: #2c3e50;
+    background: #AFD5AA;
     color: #fff;
     font-weight: bold;
-    opacity: .6;
+    opacity: 1 !important;
 }
 
 .calendar-container .calendar section.content .calendar-content ul li.today {
-    border: 2px solid #2c3e50;
+    border: 2px solid #AFD5AA;
     opacity: .6;
+}
+
+.calendar-container .calendar section.content .calendar-content ul li.today:hover {
+    background: #AFD5AA;
+    color: #fff;
+    opacity: 1;
 }
 
 .calendar-container .calendar section.content .calendar-content ul li.has-event {
@@ -189,7 +195,8 @@ body, html {
     padding: 60px;
 }
 
-.calendar-container .events .event {
+.calendar-container .events .event,
+.calendar-container .events section.event-history .event-controls {
     position: relative;
     cursor: pointer;
     z-index: 1;
@@ -202,12 +209,14 @@ body, html {
     transition: opacity .25s ease-in-out;
 }
 
-.calendar-container .events .event:hover {
+.calendar-container .events .event:hover,
+.calendar-container .events section.event-history .event-controls:hover {
     opacity: 1;
 }
 
 .calendar-container .events header.events-header {
     color: #fff;
+    text-align: center;
 }
 
 .calendar-container .events header.events-header h1 {
@@ -226,12 +235,16 @@ body, html {
 .calendar-container .events section.event-history {
     margin-top: 100px;
     text-align: center;
+    color: #fff;
+}
+
+.calendar-container .events section.event-history .event-controls {
+    opacity: .6;
 }
 
 .calendar-container .events section.event-history .event h1 {
     font-weight: bold;
     font-size: 16px;
-    color: #fff;
     letter-spacing: .05em;
 }
 
@@ -321,13 +334,13 @@ body, html {
     margin-bottom: 0;
 }
 
-.cd-modal-content .close {
+.cd-modal-content .close,
+.cd-modal-content .edit {
     position: absolute;
     top: 20px;
-    right: 20px;
     font-size: 26px;
     cursor: pointer;
-    opacity: .5;
+    opacity: .6;
 
     -webkit-transition: opacity .25s ease-in-out;
     -moz-transition: opacity .25s ease-in-out;
@@ -336,6 +349,19 @@ body, html {
     transition: opacity .25s ease-in-out;
 }
 
-.cd-modal-content .close:hover {
+.cd-modal-content:hover {
+    opacity: 1;
+}
+
+.cd-modal-content .close {
+    right: 20px;
+}
+
+.cd-modal-content .edit {
+    right: 60px;
+}
+
+.cd-modal-content .close:hover,
+.cd-modal-content .edit:hover {
     opacity: 1;
 }
