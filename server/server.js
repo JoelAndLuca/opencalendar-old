@@ -40,7 +40,15 @@ router.get("/events", function(req, res, next) {
                         "description" : "Aufnahmen für SRF Doku",
                         "location" : "Fliegerärztliches Institut (FAI), Dübendorf, Schweiz",
                         "time" : "13:15"
-                    }
+                    },
+                    {
+                         "id" : 4,
+                         "date" : "25.05.2017",
+                         "title" : "Dönerstag",
+                         "description" : "Der Dönerstag",
+                         "location" : "Coban Megadürüm",
+                         "time" : ""
+                     }
                 ] 
     }
     res.json(response);
