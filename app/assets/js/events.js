@@ -35,6 +35,7 @@ $(document).on("click", ".event-controls", function(e) {
 
 $(document).on("click", ".edit", function(e) {
     var data = {
+        "id" : 1,
         "title" : $("#cd-modal-content-title").text(),
         "description": $("#cd-modal-content-description").text(),
         "location" : $("#cd-modal-content-location").text(),
@@ -45,6 +46,7 @@ $(document).on("click", ".edit", function(e) {
 
 $(document).on("click", "#cd-modal-content-action-save", function() {
     var event = {
+        "id" : 1,
         "title" : $("#cd-modal-content-title input").val(),
         "description": $("#cd-modal-content-description textarea").val(),
         "location" : $("#cd-modal-content-location input").val(),
@@ -55,7 +57,11 @@ $(document).on("click", "#cd-modal-content-action-save", function() {
     $("#cd-modal-content-action-save").addClass('loader');
     $("#cd-modal-content-action-save").append("<i class='fa fa-circle-o-notch fa-spin fa-5x fa-fw'></i>");
     saveEvent(onSaveFinish, event);
-})
+});
+
+$(document).on("click", ".cd-modal-content .delete", function() {
+
+});
 
 function onSaveFinish() {
     closeModal();
@@ -65,17 +71,21 @@ function onSaveFinish() {
 function createModalContent(data, isEdit) {
     content.empty();
 
+    var id = -1;
     var titleVal = "";
     var descriptionVal = "";
     var locationVal = "";
     var timeVal = "";
 
     if(data != null) {
+        id = data["id"];
         titleVal = data['title'];
         descriptionVal = data['description'];
         locationVal = data['location'];
         timeVal = data['time'];
     }
+
+    content.attr('event-id', id);
 
     var titleContent = titleVal;
     var descriptionContent = descriptionVal;
@@ -94,6 +104,9 @@ function createModalContent(data, isEdit) {
     content.append("<i class='fa fa-times close' aria-hidden='true'></i>");
     if(data != null && !isEdit) {
         content.append("<i class='fa fa-pencil edit' aria-hidden='true'></i>");
+    }
+    if(data != null && isEdit) {
+        content.append("<i class='fa fa-trash-o delete' aria-hidden='true'></i>");
     }
     content.append("<h1 id='cd-modal-content-title'>" + titleContent + "</h1>");
     content.append("<h2 id='cd-modal-content-description'>" + descriptionContent + "</h2>");

@@ -197,9 +197,6 @@ function setEventHistory(data, selectedDate) {
         var year = parsedDate.year();
         return (selectedDate.date() == day) && (selectedDate.month() == month) && (selectedDate.year() == year);
     });
-    if(events.length == 0) {
-        // Display add new event
-    }
     
     // Set the history content
     var i = 0;
@@ -209,7 +206,7 @@ function setEventHistory(data, selectedDate) {
         if(timeInformation == "") {
             timeInformation = "Ganzer Tag";
         }
-        $(".event-history").append("<div class='event' data-type='modal-trigger' data-title='" + event.title + "' data-location='" + event.location + "' data-time='" + timeInformation + "' data-description='" + event.description + "' event-id='" + i + "'></div>");
+        $(".event-history").append("<div class='event' data-type='modal-trigger' data-id='" + event.id + "' data-title='" + event.title + "' data-location='" + event.location + "' data-time='" + timeInformation + "' data-description='" + event.description + "' event-id='" + i + "'></div>");
         var eventContainer = $(".event[event-id=" + i + "]");
         eventContainer.append("<h1>" + event.title + "</h1>");
         eventContainer.append("<p>" + moment().to(moment(event.date, "DD.MM.YYYY")) + "</p>");

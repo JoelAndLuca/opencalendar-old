@@ -335,7 +335,8 @@ body, html {
 }
 
 .cd-modal-content .close,
-.cd-modal-content .edit {
+.cd-modal-content .edit,
+.cd-modal-content .delete {
     position: absolute;
     top: 20px;
     font-size: 26px;
@@ -357,12 +358,14 @@ body, html {
     right: 20px;
 }
 
-.cd-modal-content .edit {
+.cd-modal-content .edit,
+.cd-modal-content .delete {
     right: 60px;
 }
 
 .cd-modal-content .close:hover,
-.cd-modal-content .edit:hover {
+.cd-modal-content .edit:hover,
+.cd-modal-content .delete:hover {
     opacity: 1;
 }
 
