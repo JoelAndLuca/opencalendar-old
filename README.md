@@ -4,7 +4,7 @@ Open-calendar is an online calendar that doesn't require login or auth. You crea
 ## Installation and useage
 1. Clone the repository
 `git clone https://github.com/lucahuber/opencalendar.git`
-2. Install node modules
+2. Install node modules   
 In server folder: `npm install`
 3. Start server
 `npm start`
