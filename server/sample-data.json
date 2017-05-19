@@ -1,5 +1,6 @@
 [
    {
+      "id" : 1,
       "date" : "25.05.2017",
       "title" : "Auffahrt",
       "description" : "Hier haben wir frei.",
@@ -7,6 +8,7 @@
       "time" : ""
    },
    {
+      "id" : 2,
       "date" : "29.05.2017",
       "title" : "Pfingsten",
       "description" : "Hier haben wir auch frei.",
@@ -14,6 +16,7 @@
       "time" : ""
    },
    {
+       "id" : 3,
        "date" : "23.05.2017",
        "title" : "SPHAIR Aufnahmen",
        "description" : "Aufnahmen für SRF Doku",
