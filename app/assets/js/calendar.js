@@ -1,3 +1,9 @@
+/*
+    calendar.js
+
+    Initializes, updates and handles all calendar related things.
+*/
+
 $(document).ready(function() {
     var now = moment();
     initializeComponents(now, 0);

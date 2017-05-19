@@ -1,6 +1,13 @@
+/*
+    app.js
+
+    Code that handles communication between backend and frontend.
+*/
+
 function getEvents(callback) {
-    // Hack to always load json new
+    // Hack to always load json without cache.
     $.ajaxSetup({ cache: false });
+
     $.ajax({url:"https://raw.githubusercontent.com/lucahuber/opencalendar/master/server/sample-data.json", 
         success: function(response) {
             var parsedData = JSON.parse(response);
@@ -29,6 +36,12 @@ async function saveEvent(callback, data) {
     await sleep(2000);
     callback();
 };
+
+async function deleteEvent(callback, id) {
+    // Delete event by id
+    await sleep(2000);
+    callback();
+}
 
 // Only to test
 function sleep(ms) {

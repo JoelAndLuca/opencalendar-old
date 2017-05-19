@@ -1,3 +1,9 @@
+/*
+    event.js
+
+    All functions and events that have to do with CRUD of events.
+*/
+
 var modalbg = $('.cd-modal-bg'),
     content = $('.cd-modal-content'),
     section = $('.cd-section');
@@ -53,14 +59,14 @@ $(document).on("click", "#cd-modal-content-action-save", function() {
         "time" : $("#cd-modal-content-time input").val()
     };
     // Set loading-animation
-    $("#cd-modal-content-action-save").empty();
-    $("#cd-modal-content-action-save").addClass('loader');
-    $("#cd-modal-content-action-save").append("<i class='fa fa-circle-o-notch fa-spin fa-5x fa-fw'></i>");
+    showLoadingAnimation();
     saveEvent(onSaveFinish, event);
 });
 
 $(document).on("click", ".cd-modal-content .delete", function() {
-
+    var eventId = content.attr('event-id');
+    showLoadingAnimation();
+    deleteEvent(onSaveFinish, eventId);
 });
 
 function onSaveFinish() {

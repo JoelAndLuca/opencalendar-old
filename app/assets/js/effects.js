@@ -1,3 +1,9 @@
+/*
+    effects.js
+
+    Handles all effects that affect the whole page.
+*/
+
 $(document).keyup(function(e) {
     if (e.keyCode === 27) {
             closeModal();
@@ -12,6 +18,12 @@ $(document).on("click", ".cd-modal-content .close", function() {
 function closeModal() {
     section.removeClass('modal-is-visible');
     animateLayer(modalbg, 1, false, 500);
+}
+
+function showLoadingAnimation() {
+    $("#cd-modal-content-action-save").empty();
+    $("#cd-modal-content-action-save").addClass('loader');
+    $("#cd-modal-content-action-save").append("<i class='fa fa-circle-o-notch fa-spin fa-5x fa-fw'></i>");
 }
 
 function scaleValue( topValue, leftValue, radiusValue, windowW, windowH) {
