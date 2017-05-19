@@ -43,6 +43,22 @@ $(document).on("click", ".edit", function(e) {
     createModalContent(data, true);
 });
 
+$(document).on("click", "#cd-modal-content-action-save", function() {
+    var event = {
+        "title" : $("#cd-modal-content-title input").val(),
+        "description": $("#cd-modal-content-description textarea").val(),
+        "location" : $("#cd-modal-content-location input").val(),
+        "time" : $("#cd-modal-content-time input").val()
+    };
+    // Set loading-animation
+    saveEvent(onSaveFinish, event);
+})
+
+function onSaveFinish() {
+    // Remove loading-animation
+    closeModal();
+}
+
 function createModalContent(data, isEdit) {
     content.empty();
 
@@ -62,12 +78,14 @@ function createModalContent(data, isEdit) {
     var descriptionContent = descriptionVal;
     var locationContent = locationVal;
     var timeContent = timeVal;
+    var actionContent = "";
 
     if(data == null || isEdit) {
-        titleContent = "<input type='text' placeholder='Title' value='" + titleVal + "'></input>";
-        descriptionContent = "<input type='text' placeholder='Description' value='" + descriptionVal + "'></input>";
-        locationContent = "<input type='text' placeholder='Location' value='" + locationVal + "'></input>";
-        timeContent = "<input type='time' placeholder='Time' value='" + timeVal + "'></input>";
+        titleContent = "<input id='cd-modal-content-title' type='text' placeholder='Title' value='" + titleVal + "'></input>";
+        descriptionContent = "<textarea id='cd-modal-content-description' placeholder='Description'>" + descriptionVal + "</textarea>";
+        locationContent = "<input id='cd-modal-content-location' type='text' placeholder='Location' value='" + locationVal + "'></input>";
+        timeContent = "<input id='cd-modal-content-time' type='time' placeholder='Time' value='" + timeVal + "'></input>";
+        actionContent = "<div  id='cd-modal-content-action-save'><i class='fa fa-check fa-5x' aria-hidden='true'></i></div>";
     }
 
     content.append("<i class='fa fa-times close' aria-hidden='true'></i>");
@@ -78,6 +96,7 @@ function createModalContent(data, isEdit) {
     content.append("<h2 id='cd-modal-content-description'>" + descriptionContent + "</h2>");
     content.append("<div id='cd-modal-content-location'><i class='fa fa-map-marker' aria-hidden='true'></i><span>" + locationContent + "</span>");
     content.append("<div id='cd-modal-content-time'><i class='fa fa-clock-o' aria-hidden='true'></i><span>" + timeContent + "</span></div>");
+    content.append(actionContent);
 }
 
 function provideData(data) {

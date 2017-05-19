@@ -23,3 +23,8 @@ function getEvents(callback) {
         }
     });
 }
+
+function saveEvent(callback, data) {
+    // Save data
+    callback();
+}

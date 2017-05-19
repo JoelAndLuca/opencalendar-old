@@ -365,3 +365,20 @@ body, html {
 .cd-modal-content .edit:hover {
     opacity: 1;
 }
+
+#cd-modal-content-action-save {
+    margin-top: 100px;
+    color: #fff;
+    opacity: .6;
+
+    -webkit-transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -ms-transition: opacity .25s ease-in-out;
+    -o-transition: opacity .25s ease-in-out;
+    transition: opacity .25s ease-in-out;
+}
+
+#cd-modal-content-action-save:hover {
+    cursor: pointer;
+    opacity: 1;
+}
