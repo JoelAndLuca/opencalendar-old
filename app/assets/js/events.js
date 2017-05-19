@@ -51,12 +51,15 @@ $(document).on("click", "#cd-modal-content-action-save", function() {
         "time" : $("#cd-modal-content-time input").val()
     };
     // Set loading-animation
+    $("#cd-modal-content-action-save").empty();
+    $("#cd-modal-content-action-save").addClass('loader');
+    $("#cd-modal-content-action-save").append("<i class='fa fa-circle-o-notch fa-spin fa-5x fa-fw'></i>");
     saveEvent(onSaveFinish, event);
 })
 
 function onSaveFinish() {
-    // Remove loading-animation
     closeModal();
+    getEvents(setEventHistory);
 }
 
 function createModalContent(data, isEdit) {
@@ -85,7 +88,7 @@ function createModalContent(data, isEdit) {
         descriptionContent = "<textarea id='cd-modal-content-description' placeholder='Description'>" + descriptionVal + "</textarea>";
         locationContent = "<input id='cd-modal-content-location' type='text' placeholder='Location' value='" + locationVal + "'></input>";
         timeContent = "<input id='cd-modal-content-time' type='time' placeholder='Time' value='" + timeVal + "'></input>";
-        actionContent = "<div  id='cd-modal-content-action-save'><i class='fa fa-check fa-5x' aria-hidden='true'></i></div>";
+        actionContent = "<div id='cd-modal-content-action-save'><i class='fa fa-check fa-5x' aria-hidden='true'></i></div>";
     }
 
     content.append("<i class='fa fa-times close' aria-hidden='true'></i>");

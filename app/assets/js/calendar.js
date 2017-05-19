@@ -177,6 +177,13 @@ function initializeEvents(data) {
 }
 
 function setEventHistory(data, selectedDate) {
+    if(selectedDate == null) {
+        selectedDate = moment();
+        selectedDate.date($(".dates ul li.current").attr("date"));
+        selectedDate.month($(".year-current span[month-val]").attr("month-val"));
+        selectedDate.year($(".year-current span[year-val]").attr("year-val"));
+    }
+
     $(".events-header").empty();
     var events = data;
     // Set events for selected day

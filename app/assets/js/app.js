@@ -22,9 +22,15 @@ function getEvents(callback) {
             console.log(response);
         }
     });
-}
+};
 
-function saveEvent(callback, data) {
+async function saveEvent(callback, data) {
     // Save data
+    await sleep(2000);
     callback();
-}
+};
+
+// Only to test
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+};

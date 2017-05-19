@@ -378,7 +378,7 @@ body, html {
     transition: opacity .25s ease-in-out;
 }
 
-#cd-modal-content-action-save:hover {
+#cd-modal-content-action-save:not(.loader):hover {
     cursor: pointer;
     opacity: 1;
 }
