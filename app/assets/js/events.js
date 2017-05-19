@@ -14,6 +14,8 @@ $(document).on("click", ".dates ul li:not(.filler)", function(e) {
     $(this).addClass("current");
 
     // Show list of events on this date
+    $(".event-history").empty();
+    $(".event-history").append("<i class='fa fa-circle-o-notch fa-spin fa-5x fa-fw'></i>");
     getEvents(updateHistory);
 });
 
