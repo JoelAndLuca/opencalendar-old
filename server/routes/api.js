@@ -1,19 +1,9 @@
-var express = require("express");
-var app = express();
-var bodyParser = require("body-parser");
-var router = express.Router();
-var mongoOp = require("./models/mongo")
+const express = require('express');
+const router = express.Router();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({"extended" : false}));
-
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-
-router.get("/events", function(req, res, next) {
+// Gets all events
+// To get events from a specific calendar: '/:calendarId/events/'?
+router.get('/events', function(req, res) {
     var response = {
         "status" : "success",
         "data" :  [
@@ -51,10 +41,21 @@ router.get("/events", function(req, res, next) {
                      }
                 ] 
     }
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.json(response);
 });
 
-app.use("/", router);
+router.post('/events', function(req, res) {
+    res.send({type:'POST'});
+});
 
-app.listen(3000);
-console.log("Listening on port 3000");
+router.put('/events/:id', function(req, res) {
+    res.send({type:'PUT'});
+});
+
+router.delete('/events/:id', function(req, res) {
+    res.send({type:'DELETE'});
+});
+
+module.exports = router;

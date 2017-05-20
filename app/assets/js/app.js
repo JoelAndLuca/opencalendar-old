@@ -46,7 +46,7 @@ function getEvents(callback) {
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: "http://localhost:3000/events",
+        url: "http://localhost:4000/api/events",
         success: function(response) {
             var parsedData = response.data;
             sortAndReturnEvents(parsedData, callback);
