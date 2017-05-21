@@ -1,5 +1,6 @@
 const express = require('express');
 const Event = require('../models/event');
+const Calendar = require('../models/calendar');
 const router = express.Router();
 
 // Gets ALL events
@@ -7,6 +8,12 @@ const router = express.Router();
 router.get('/events', function(req, res, next) {
     Event.find({}).then(function(events) {
         res.send(events);
+    });
+});
+
+router.get('/calendars', function(req, res, next) {
+    Calendar.find({}).then(function(calendars) {
+        res.send(calendars);
     });
 });
 

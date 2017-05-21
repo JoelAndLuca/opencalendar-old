@@ -1,6 +1,11 @@
 # open-calendar
 Open-calendar is an online calendar that doesn't require login or auth. You create a calendar and get a permalink. Anyone with that permalink can use the calendar.
 
+## Folder structure
+**Do only use the index.html located in /app if no NodeJS is available. The correct html is located in the home.ejs file in /views.**
+
+**Don't move the /app/assets folder or it's contents**
+
 ## Installation and useage
 1. Clone the repository: `git clone https://github.com/lucahuber/opencalendar.git`
 2. Install node modules: `npm install`
