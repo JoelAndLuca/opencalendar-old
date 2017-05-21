@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Open Calendar</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+
+        <section class="calendar-container">
+
+            <section class="calendar">
+                <header class="calendar-header">
+
+                    <div class="calendar-controls">
+
+                        <div class="year-before">
+                            <!-- Populated with calendar.js -->
+                        </div>
+
+                        <div class="year-current">
+                            <!-- Populated with calendar.js -->
+                        </div>
+
+                        <div class="year-after">
+                            <!-- Populated with calendar.js -->
+                        </div>
+
+                    </div>
+                    
+                    <div class="back-to-today hidden">
+                        Back to today
+                    </div>
+
+                </header>
+
+                <section class="content">
+
+                    <div class="switch switch-decrease previous">
+                        <i class="fa fa-chevron-left"></i>
+                    </div>
+                    <div class="slide">
+                        <div class="calendar-content">
+                            <!-- Populated with calendar.js -->
+                        </div>
+                    </div>
+
+                    <div class="switch switch-increase next">
+                        <i class="fa fa-chevron-right" ></i>
+                    </div>
+
+                </section>
+
+            </section>
+
+            <section class="events cd-section">
+
+                <div class="cd-modal-bg"></div>
+
+                <div class="cd-modal-content">
+                    <!-- Populated with calendar.js -->
+                </div>
+
+                <header class="events-header">
+                    <!-- Populated with calendar.js -->
+                </header>
+
+                <section class="event-history">
+                    <!-- Populated with calendar.js -->
+                    <i class='fa fa-circle-o-notch fa-spin fa-5x fa-fw'></i>
+                </section>
+
+            </section>
+
+        </section>
+        
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
+    <script src="assets/js/lib/velocity.min.js"></script>
+    <script src="assets/js/effects.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/calendar.js"></script>
+    <script src="assets/js/events.js"></script>
+    <script>
+        $(document).ready(function() {
+            alert("Dieses HTML nur zum testen verwenden! Das eigentliche HTML befindet sich unter views/home.ejs. Es wird Node.JS benötigt. Siehe Readme.md");
+        });
+    </script>
+</body>
+</html>
