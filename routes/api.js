@@ -3,10 +3,8 @@ const Event = require('../models/event');
 const Calendar = require('../models/calendar');
 const router = express.Router();
 
-// Gets ALL events
-// To get events from a specific calendar: '/:calendarId/events/'?
-router.get('/events', function(req, res, next) {
-    Event.find({}).then(function(events) {
+router.get('/calendar/:calId/events', function(req, res, next) {
+    Event.find({calendarId: req.params.calId}).then(function(events) {
         res.send(events);
     });
 });
@@ -14,6 +12,12 @@ router.get('/events', function(req, res, next) {
 router.get('/calendars', function(req, res, next) {
     Calendar.find({}).then(function(calendars) {
         res.send(calendars);
+    });
+});
+
+router.get('/events', function(req, res, next) {
+    Event.find({}).then(function(event) {
+        res.send(event);
     });
 });
 

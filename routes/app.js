@@ -16,7 +16,9 @@ router.get('/:calId?', function(req, res, next) {
         console.log("Load calendar: " + calendarId);
         Calendar.findOne({_id: calendarId}).then(function(calendar) {
             console.log(calendar);
-            res.render('home');
+
+            // Set up params for ejs templating.
+            res.render('home', {calendarId: calendar._id});
         });
     }
 });

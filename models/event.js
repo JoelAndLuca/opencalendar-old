@@ -19,7 +19,7 @@ const EventSchema  = new Schema({
         required: [false]
     },
     calendarId: {
-        type: Number,
+        type: String,
         required: [true, 'CalendarId field is required.']
     }
 });

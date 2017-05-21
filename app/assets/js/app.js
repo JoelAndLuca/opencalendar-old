@@ -36,13 +36,11 @@ var sampleData = [
 ];
 
 function getEvents(callback) {
-    // Hack to always load json without cache.
-    $.ajaxSetup({ cache: false });
-
+    var calendarId = $("#calendar").attr("calendar-id");
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: "http://localhost:4000/api/events",
+        url: "http://localhost:4000/api/calendar/" + calendarId + "/events",
         success: function(response) {
             sortAndReturnEvents(response, callback);
         }, error: function(response) {
@@ -54,7 +52,6 @@ function getEvents(callback) {
                 sortAndReturnEvents(sampleData, callback);
             }
             console.log("Unknown error");
-            console.log(response);
         }
     });
 };
@@ -76,6 +73,7 @@ function sortAndReturnEvents(data, callback) {
 }
 
 function saveEvent(callback, reqdata) {
+    var calendarId = $("#calendar").attr("calendar-id");
     var httpCallType = "POST";
     var reqUrl = "http://localhost:4000/api/events";
     if(reqdata._id != -1) {
@@ -84,6 +82,7 @@ function saveEvent(callback, reqdata) {
     } else {
         delete reqdata["_id"];
     }
+    reqdata.calendarId = calendarId;
     $.ajax({
         type: httpCallType,
         dataType: "json",

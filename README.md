@@ -16,7 +16,7 @@ Starting the webpage and calling the NodeJs REST-API without a running server wi
 ## REST API
 | URL | HTTP-Action | Description |
 | ------------- |-------------| -----|
-| /api/events | GET | Gets all events currently stored in the database. |
+| /api/calendar/:calId/events | GET | Gets all events for a calendar id. |
 | /api/calendars | GET | Gets all calendars currently stored in the database. |
 | /api/events | POST | Saves a new event. |
 | /api/events/:id | PUT | Updates an existing event. |
