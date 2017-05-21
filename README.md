@@ -12,9 +12,9 @@ Starting the webpage and calling the NodeJs REST-API without running server will
 ## REST API
 | URL | HTTP-Action | Description |
 | ------------- |-------------| -----|
-| :4000/api/events | GET | Gets all events currently stored in the database. |
-| :4000/api/events | POST | Saves a new event. |
-| :4000/api/events/:id | PUT | Updates an existing event. |
-| :4000/api/events/:id | DELETE | Deletes an existing event. |
+| /api/events | GET | Gets all events currently stored in the database. |
+| /api/events | POST | Saves a new event. |
+| /api/events/:id | PUT | Updates an existing event. |
+| /api/events/:id | DELETE | Deletes an existing event. |
 
 POST, PUT and DELETE calls that executed successfully will return the affected event. Otherwise an error with an HTTP status code is returned.

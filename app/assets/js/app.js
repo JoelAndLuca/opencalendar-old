@@ -75,7 +75,7 @@ function sortAndReturnEvents(data, callback) {
     callback(data);
 }
 
-async function saveEvent(callback, reqdata) {
+function saveEvent(callback, reqdata) {
     var httpCallType = "POST";
     var reqUrl = "http://localhost:4000/api/events";
     if(reqdata._id != -1) {
@@ -90,20 +90,30 @@ async function saveEvent(callback, reqdata) {
         url: reqUrl,
         data: reqdata,
         success: function(response) {
-            callback();
+            callback(true);
         }, error: function(response) {
-            alert(response.statusText);
+            if(response.responseText != null) {
+                callback(false, JSON.parse(response.responseText).error);
+            } else {
+                callback(false, response.statusText);
+            }
         }
     });
 };
 
-async function deleteEvent(callback, id) {
-    // Delete event by id
-    await sleep(2000);
-    callback();
-}
-
-// Only to test
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+function deleteEvent(callback, id) {
+    $.ajax({
+        type: "DELETE",
+        dataType: "json",
+        url: "http://localhost:4000/api/events/" + id,
+        success: function(response) {
+            callback(true);
+        }, error: function(response) {
+            if(response.responseText != null) {
+                callback(false, JSON.parse(response.responseText).error);
+            } else {
+                callback(false, response.statusText);
+            }
+        }
+    });
 };

@@ -21,9 +21,16 @@ function closeModal() {
 }
 
 function showLoadingAnimation() {
-    $("#cd-modal-content-action-save").empty();
-    $("#cd-modal-content-action-save").addClass('loader');
-    $("#cd-modal-content-action-save").append("<i class='fa fa-circle-o-notch fa-spin fa-5x fa-fw'></i>");
+    $("#cd-modal-content-action").empty();
+    $("#cd-modal-content-action").addClass('loader');
+    $("#cd-modal-content-action").append("<i class='fa fa-circle-o-notch fa-spin fa-5x fa-fw'></i>");
+}
+
+function showError(message) {
+    $("#cd-modal-content-action").empty();
+    $("#cd-modal-content-action").addClass('loader');
+    $("#cd-modal-content-action").append("<i class='fa fa-exclamation-triangle fa-5x' aria-hidden='true'></i>");
+    $("#cd-modal-content-action").append("<p>" + message + "</p>");
 }
 
 function scaleValue( topValue, leftValue, radiusValue, windowW, windowH) {

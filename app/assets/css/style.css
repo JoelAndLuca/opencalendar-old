@@ -369,7 +369,7 @@ body, html {
     opacity: 1;
 }
 
-#cd-modal-content-action-save {
+#cd-modal-content-action {
     margin-top: 100px;
     color: #fff;
     opacity: .6;
@@ -381,7 +381,7 @@ body, html {
     transition: opacity .25s ease-in-out;
 }
 
-#cd-modal-content-action-save:not(.loader):hover {
+#cd-modal-content-action:not(.loader):hover {
     cursor: pointer;
     opacity: 1;
 }

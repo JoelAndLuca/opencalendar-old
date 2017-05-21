@@ -64,7 +64,7 @@ $(document).on("click", ".edit", function(e) {
     createModalContent(data, true);
 });
 
-$(document).on("click", "#cd-modal-content-action-save", function() {
+$(document).on("click", "#cd-modal-content-action .save", function() {
     var date = moment($("#cd-modal-content-date").val() + " " + $("#cd-modal-content-time input").val(), "DD.MM.YYYY hh:mm");
     var event = {
         "_id" : $(".cd-modal-content").attr("data-id"),
@@ -85,9 +85,15 @@ $(document).on("click", ".cd-modal-content .delete", function() {
     deleteEvent(onSaveFinish, eventId);
 });
 
-function onSaveFinish() {
-    closeModal();
-    getEvents(setEventHistory);
+function onSaveFinish(success, message) {
+    if(success) {
+        closeModal();
+        var currentSelectedDate = moment($("#cd-modal-content-date").val() + " " + $("#cd-modal-content-time input").val(), "DD.MM.YYYY hh:mm");
+        initializeComponents(moment(), 0);
+        $(".dates ul li[date='" + currentSelectedDate.date() + "']")[0].click();
+    } else {
+        showError(message);
+    }
 }
 
 function createModalContent(data, isEdit) {
@@ -125,14 +131,14 @@ function createModalContent(data, isEdit) {
         descriptionContent = "<textarea id='cd-modal-content-description' placeholder='Description'>" + descriptionVal + "</textarea>";
         locationContent = "<input id='cd-modal-content-location' type='text' placeholder='Location' value='" + locationVal + "'></input>";
         dateContent = "<input id='cd-modal-content-time' type='time' placeholder='Date' value='" + dateVal.format("hh:mm") + "'></input>";
-        actionContent = "<div id='cd-modal-content-action-save'><i class='fa fa-check fa-5x' aria-hidden='true'></i></div>";
+        actionContent = "<div id='cd-modal-content-action'><div class='save'><i class='fa fa-check fa-5x' aria-hidden='true'></i></div></div>";
     }
 
     content.append("<i class='fa fa-times close' aria-hidden='true'></i>");
     if(data != null && !isEdit) {
         content.append("<i class='fa fa-pencil edit' aria-hidden='true'></i>");
     }
-    if(data != null && isEdit) {
+    if(data != null && isEdit && _id != -1) {
         content.append("<i class='fa fa-trash-o delete' aria-hidden='true'></i>");
     }
     content.append("<h1 id='cd-modal-content-title'>" + nameContent + "</h1>");

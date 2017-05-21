@@ -8,10 +8,6 @@ router.get('/events', function(req, res, next) {
     Event.find({}).then(function(events) {
         res.send(events);
     });
-    // Hack to fix CORS
-    /*res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.json(response);*/
 });
 
 router.post('/events', function(req, res, next) {
