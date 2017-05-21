@@ -10,6 +10,7 @@ $(document).ready(function() {
 });
 
 function initializeComponents(value, animationDirection) {
+    closeModal();
     initializeCalendar(value, animationDirection);
     getEvents(initializeEvents);
 }
@@ -197,7 +198,7 @@ function setEventHistory(data, selectedDate) {
     $(".events-header").append("<h2>" + selectedDate.format("DD.MM.YYYY") + "</h2>");
     var originalData = events;
     events = originalData.filter(function(event) {
-        var parsedDate = moment(event.date, "DD.MM.YYYY");
+        var parsedDate = moment(event.date);
         var day = parsedDate.date();
         var month = parsedDate.month();
         var year = parsedDate.year();
@@ -208,14 +209,11 @@ function setEventHistory(data, selectedDate) {
     var i = 0;
     $(".event-history").empty();
     events.forEach(function(event) {
-        var timeInformation = event.time;
-        if(timeInformation == "") {
-            timeInformation = "Ganzer Tag";
-        }
-        $(".event-history").append("<div class='event' data-type='modal-trigger' data-id='" + event.id + "' data-title='" + event.title + "' data-location='" + event.location + "' data-time='" + timeInformation + "' data-description='" + event.description + "' event-id='" + i + "'></div>");
-        var eventContainer = $(".event[event-id=" + i + "]");
-        eventContainer.append("<h1>" + event.title + "</h1>");
-        eventContainer.append("<p>" + moment().to(moment(event.date, "DD.MM.YYYY")) + "</p>");
+        var dateMoment = moment(event.date);
+        $(".event-history").append("<div class='event' data-type='modal-trigger' data-id='" + event._id + "' data-name='" + event.name + "' data-location='" + event.location + "' data-date='" + dateMoment + "' data-description='" + event.description + "'></div>");
+        var eventContainer = $(".event[data-id=" + event._id + "]");
+        eventContainer.append("<h1>" + event.name + "</h1>");
+        eventContainer.append("<p>" + moment().to(dateMoment) + "</p>");
         $(".event-history").append("<hr/>");
         i++;
     });
@@ -228,7 +226,7 @@ function setEventHistory(data, selectedDate) {
 function setEventsInCalendar(data) {
     // Set dates in calendar.
     data.forEach(function(event) {
-        var date = moment(event.date, "DD.MM.YYYY");
+        var date = moment(event.date);
         if((date.month() == $(".year-current span[month-val]").attr("month-val")) && (date.year() == $(".year-current span[year-val]").attr("year-val"))) {
             // In this calendar-scope - display!
             var day = date.date();

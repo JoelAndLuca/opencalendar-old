@@ -6,36 +6,32 @@
 
 var sampleData = [
     {
-        "id" : 1,
-        "date" : "25.05.2017",
-        "title" : "Auffahrt",
+        "_id" : 1,
+        "date" : "2017-05-25T00:00:00.000Z",
+        "name" : "Auffahrt",
         "description" : "Hier haben wir frei.",
-        "location" : "Schweizweit",
-        "time" : ""
+        "location" : "Schweizweit"
     },
     {
-        "id" : 2,
-        "date" : "29.05.2017",
-        "title" : "Pfingsten",
+        "_id" : 2,
+        "date" : "2017-05-29T00:00:00.000Z",
+        "name" : "Pfingsten",
         "description" : "Hier haben wir auch frei.",
-        "location" : "Schweizweit",
-        "time" : ""
+        "location" : "Schweizweit"
     },
     {
-        "id" : 3,
-        "date" : "23.05.2017",
-        "title" : "SPHAIR Aufnahmen",
+        "_id" : 3,
+        "date" : "2017-05-23T11:15:00.000Z",
+        "name" : "SPHAIR Aufnahmen",
         "description" : "Aufnahmen für SRF Doku",
-        "location" : "Fliegerärztliches Institut (FAI), Dübendorf, Schweiz",
-        "time" : "13:15"
+        "location" : "Fliegerärztliches Institut (FAI), Dübendorf, Schweiz"
     },
     {
-        "id" : 4,
-        "date" : "25.05.2017",
-        "title" : "Dönerstag",
+        "_id" : 4,
+        "date" : "2017-05-25T15:00:00.000Z",
+        "name" : "Dönerstag",
         "description" : "Der Dönerstag",
-        "location" : "Coban Megadürüm",
-        "time" : ""
+        "location" : "Coban Megadürüm"
     }
 ];
 
@@ -48,13 +44,13 @@ function getEvents(callback) {
         dataType: "json",
         url: "http://localhost:4000/api/events",
         success: function(response) {
-            var parsedData = response.data;
-            sortAndReturnEvents(parsedData, callback);
+            sortAndReturnEvents(response, callback);
         }, error: function(response) {
             if(response.status == 0) {
                 // The node server is not started
                 // Use only for development and testing!
-                console.log("Server not started\nCall 'npm start' in server folder.\nSample data is served.");
+                console.log("Server not started\nCall 'npm start' or 'nodemon index' in server folder.\nSample data is served.");
+                console.log(sampleData);
                 sortAndReturnEvents(sampleData, callback);
             }
             console.log("Unknown error");
@@ -66,8 +62,8 @@ function getEvents(callback) {
 function sortAndReturnEvents(data, callback) {
     data.sort(function(a, b) {
         // If a is before b
-        var momA = moment(a.date, "DD.MM.YYYY");
-        var momB = moment(b.date, "DD.MM.YYYY");
+        var momA = moment(a.date);
+        var momB = moment(b.date);
         if(momA.isBefore(momB)) {
             return -1;
         }
@@ -79,10 +75,26 @@ function sortAndReturnEvents(data, callback) {
     callback(data);
 }
 
-async function saveEvent(callback, data) {
-    // Save data
-    await sleep(2000);
-    callback();
+async function saveEvent(callback, reqdata) {
+    var httpCallType = "POST";
+    var reqUrl = "http://localhost:4000/api/events";
+    if(reqdata._id != -1) {
+        httpCallType = "PUT";
+        reqUrl = reqUrl + "/" + reqdata._id;
+    } else {
+        delete reqdata["_id"];
+    }
+    $.ajax({
+        type: httpCallType,
+        dataType: "json",
+        url: reqUrl,
+        data: reqdata,
+        success: function(response) {
+            callback();
+        }, error: function(response) {
+            alert(response.statusText);
+        }
+    });
 };
 
 async function deleteEvent(callback, id) {

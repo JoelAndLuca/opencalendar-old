@@ -1,61 +1,37 @@
 const express = require('express');
+const Event = require('../models/event');
 const router = express.Router();
 
-// Gets all events
+// Gets ALL events
 // To get events from a specific calendar: '/:calendarId/events/'?
-router.get('/events', function(req, res) {
-    var response = {
-        "status" : "success",
-        "data" :  [
-                    {
-                        "id" : 1,
-                        "date" : "25.05.2017",
-                        "title" : "Auffahrt",
-                        "description" : "Hier haben wir frei.",
-                        "location" : "Schweizweit",
-                        "time" : ""
-                    },
-                    {
-                        "id" : 2,
-                        "date" : "29.05.2017",
-                        "title" : "Pfingsten",
-                        "description" : "Hier haben wir auch frei.",
-                        "location" : "Schweizweit",
-                        "time" : ""
-                    },
-                    {
-                        "id" : 3,
-                        "date" : "23.05.2017",
-                        "title" : "SPHAIR Aufnahmen",
-                        "description" : "Aufnahmen für SRF Doku",
-                        "location" : "Fliegerärztliches Institut (FAI), Dübendorf, Schweiz",
-                        "time" : "13:15"
-                    },
-                    {
-                         "id" : 4,
-                         "date" : "25.05.2017",
-                         "title" : "Dönerstag",
-                         "description" : "Der Dönerstag",
-                         "location" : "Coban Megadürüm",
-                         "time" : ""
-                     }
-                ] 
-    }
-    res.header("Access-Control-Allow-Origin", "*");
+router.get('/events', function(req, res, next) {
+    Event.find({}).then(function(events) {
+        res.send(events);
+    });
+    // Hack to fix CORS
+    /*res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.json(response);
+    res.json(response);*/
 });
 
-router.post('/events', function(req, res) {
-    res.send({type:'POST'});
+router.post('/events', function(req, res, next) {
+    Event.create(req.body).then(function(event) {
+        res.send(event);
+    }).catch(next);
 });
 
-router.put('/events/:id', function(req, res) {
-    res.send({type:'PUT'});
+router.put('/events/:id', function(req, res, next) {
+    Event.findByIdAndUpdate({_id: req.params.id}, req.body).then(function() {
+        Event.findOne({_id: req.params.id}).then(function(event) {
+            res.send(event);
+        });
+    });
 });
 
-router.delete('/events/:id', function(req, res) {
-    res.send({type:'DELETE'});
+router.delete('/events/:id', function(req, res, next) {
+    Event.findByIdAndRemove({_id: req.params.id}).then(function(event) {
+        res.send(event);
+    }).catch(next);
 });
 
 module.exports = router;
