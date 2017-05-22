@@ -11,7 +11,7 @@ Open-calendar is an online calendar that doesn't require login or auth. You crea
 2. Install node modules: `npm install`
 3. Start server: `npm start` or if you use nodemon `npm install nodemon -g` call `nodemon server`
 
-Starting the webpage and calling the NodeJs REST-API without a running server will return hard-coded sample data located in app/assets/js/app.js
+Starting the webpage `http://localhost:<PORT>/` and calling the NodeJs REST-API without a running server will return hard-coded sample data located in app/assets/js/app.js
 
 ## REST API
 | URL | HTTP-Action | Description |
