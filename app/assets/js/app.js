@@ -50,7 +50,7 @@ function getEvents(callback) {
                 console.log(sampleData);
                 sortAndReturnEvents(sampleData, callback);
             }
-            Rollbar.error(exception);
+            Rollbar.error("An error calling GET /api/calendar occured.\nException:\t" + exception);
         }
     });
 };
@@ -90,7 +90,7 @@ function saveEvent(callback, reqdata) {
         success: function(response) {
             callback(true);
         }, error: function(jqXHR, exception) {
-            Rollbar.error(exception);
+            Rollbar.error("An error calling " + httpCallType + " " +  reqUrl + " occured.\nData:\t" + JSON.stringify(reqdata) + "\nException:\t" + exception);
             if(jqXHR.responseText != null) {
                 callback(false, JSON.parse(jqXHR.responseText).error);
             } else {
@@ -108,7 +108,7 @@ function deleteEvent(callback, id) {
         success: function(response) {
             callback(true);
         }, error: function(jqXHR, exception) {
-            Rollbar.error(exception);
+            Rollbar.error("An error calling DELETE /api/events/" + id + " occured.\nException:\t" + exception);
             if(jqXHR.responseText != null) {
                 callback(false, JSON.parse(jqXHR.responseText).error);
             } else {
