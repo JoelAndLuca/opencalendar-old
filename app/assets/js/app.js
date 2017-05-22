@@ -43,15 +43,14 @@ function getEvents(callback) {
         url: "/api/calendar/" + calendarId + "/events",
         success: function(response) {
             sortAndReturnEvents(response, callback);
-        }, error: function(response) {
-            if(response.status == 0) {
-                // The node server is not started
-                // Use only for development and testing!
+        }, error: function(jqXHR, exception) {
+            if(jqXHR.status == 0) {
+                Rollbar.debug("NodeJS server not started. Serving sample data.")
                 console.log("Server not started\nCall 'npm start' or 'nodemon index' in server folder.\nSample data is served.");
                 console.log(sampleData);
                 sortAndReturnEvents(sampleData, callback);
             }
-            console.log("Unknown error");
+            Rollbar.error(exception);
         }
     });
 };
@@ -90,11 +89,12 @@ function saveEvent(callback, reqdata) {
         data: reqdata,
         success: function(response) {
             callback(true);
-        }, error: function(response) {
-            if(response.responseText != null) {
-                callback(false, JSON.parse(response.responseText).error);
+        }, error: function(jqXHR, exception) {
+            Rollbar.error(exception);
+            if(jqXHR.responseText != null) {
+                callback(false, JSON.parse(jqXHR.responseText).error);
             } else {
-                callback(false, response.statusText);
+                callback(false, jqXHR.statusText);
             }
         }
     });
@@ -107,11 +107,12 @@ function deleteEvent(callback, id) {
         url: "/api/events/" + id,
         success: function(response) {
             callback(true);
-        }, error: function(response) {
-            if(response.responseText != null) {
-                callback(false, JSON.parse(response.responseText).error);
+        }, error: function(jqXHR, exception) {
+            Rollbar.error(exception);
+            if(jqXHR.responseText != null) {
+                callback(false, JSON.parse(jqXHR.responseText).error);
             } else {
-                callback(false, response.statusText);
+                callback(false, jqXHR.statusText);
             }
         }
     });
