@@ -22,9 +22,9 @@ router.get('/events', function(req, res, next) {
 });
 
 router.post('/events', function(req, res, next) {
-    Event.create(req.body).then(function(event) {
+    /*Event.create(req.body).then(function(event) {
         res.send(event);
-    }).catch(next);
+    }).catch(next);*/
 });
 
 router.put('/events/:id', function(req, res, next) {

@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Huber Luca, Klingler Joèl",
   "license": "ISC",
@@ -19,5 +19,10 @@
     "express": "^4.15.3",
     "mongoose": "^4.10.0",
     "serve-favicon": "^2.4.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.4.1"
   }
 }
