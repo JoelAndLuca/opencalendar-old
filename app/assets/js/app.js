@@ -40,7 +40,7 @@ function getEvents(callback) {
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: "http://localhost:4000/api/calendar/" + calendarId + "/events",
+        url: "/api/calendar/" + calendarId + "/events",
         success: function(response) {
             sortAndReturnEvents(response, callback);
         }, error: function(response) {
@@ -75,7 +75,7 @@ function sortAndReturnEvents(data, callback) {
 function saveEvent(callback, reqdata) {
     var calendarId = $("#calendar").attr("calendar-id");
     var httpCallType = "POST";
-    var reqUrl = "http://localhost:4000/api/events";
+    var reqUrl = "/api/events";
     if(reqdata._id != -1) {
         httpCallType = "PUT";
         reqUrl = reqUrl + "/" + reqdata._id;
@@ -104,7 +104,7 @@ function deleteEvent(callback, id) {
     $.ajax({
         type: "DELETE",
         dataType: "json",
-        url: "http://localhost:4000/api/events/" + id,
+        url: "/api/events/" + id,
         success: function(response) {
             callback(true);
         }, error: function(response) {
