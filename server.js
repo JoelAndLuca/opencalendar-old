@@ -20,13 +20,13 @@ var allowCrossdomain = function(req, res, next) {
 };
 
 app.set('view engine', 'ejs');
-app.use(favicon(path.join(__dirname, 'app/assets/images', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'src/assets/images', 'favicon.ico')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(allowCrossdomain);
 app.use('/api', apiRoutes);
 app.use('/', appRoutes);
-app.use(express.static(path.join(__dirname, 'app')));
+app.use(express.static(path.join(__dirname, 'src')));
 app.use(function(err, req, res, next) {
     console.log(err);
     res.status(422).send({error: err.message});
