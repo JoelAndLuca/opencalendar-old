@@ -4,12 +4,12 @@ Open-calendar is an online calendar that doesn't require login or auth. You crea
 ## Folder structure
 **Do only use the index.html located in /app if no NodeJS is available. The correct html is located in the home.ejs file in /views.**
 
-**Don't move the /app/assets folder or it's contents**
+**Don't move the /app/assets folder or it's contents.**
 
 ## Installation and useage
 1. Clone the repository: `git clone https://github.com/lucahuber/opencalendar.git`
 2. Install node modules: `npm install`
-3. Start server: `npm start` or if you use nodemon `npm install nodemon -g` call `nodemon index`
+3. Start server: `npm start` or if you use nodemon `npm install nodemon -g` call `nodemon server`
 
 Starting the webpage and calling the NodeJs REST-API without a running server will return hard-coded sample data located in app/assets/js/app.js
 
