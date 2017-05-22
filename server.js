@@ -32,7 +32,7 @@ app.use(function(err, req, res, next) {
     res.status(422).send({error: err.message});
 });
 
-var port = process.env.port || 4000;
+var port = process.env.PORT || 4000;
 app.listen(port, function(req, res) {
     console.log("Listening on port " + port);
 });
