@@ -20,7 +20,7 @@ router.get('/:calId?', function(req, res, next) {
                 console.log("404");
             } else {
                 // Set up params for ejs templating.
-                res.render('home', {calendarId: calendar._id});
+                res.render('home', {calendarId: calendar._id, rollbarEnvironment: process.env.NODE_ENV});
             }
         });
     }

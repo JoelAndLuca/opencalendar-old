@@ -7,12 +7,14 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const Rollbar = require('rollbar');
 
+const app = express();
+
 var rollbar = new Rollbar({
   accessToken: "1768edd819094735b04628ad7ac4f42d",
   handleUncaughtExceptions: true,
-  handleUnhandledRejections: true
+  handleUnhandledRejections: true,
+  environment: app.settings.env
 });
-const app = express();
 
 mongoose.connect('mongodb://techUser1:Z=BHT/jEpOLtA()>E-nu<a*q=jcqJVq}@cluster0-shard-00-00-eatwn.mongodb.net:27017,cluster0-shard-00-01-eatwn.mongodb.net:27017,cluster0-shard-00-02-eatwn.mongodb.net:27017/opencalendar?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin')
 mongoose.Promise = global.Promise;
@@ -40,11 +42,12 @@ app.use(function(err, req, res, next) {
 });
 app.use(rollbar.errorHandler());
 
+process.env.NODE_ENV = app.settings.env;
+
 var port = process.env.PORT || 4000;
 var listenMessage = "Listening on port " + port;
 app.listen(port, function(req, res) {
-    //rollbar.log(listenMessage)
-    console.log(app.settings.env);
+    rollbar.log(listenMessage)
     console.log(listenMessage);
 });
 
