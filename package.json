@@ -1,7 +1,7 @@
 {
-  "name": "opencalendar-server",
+  "name": "opencalendar",
   "version": "1.0.0",
-  "description": "The backend for the opencalendar webapplication.",
+  "description": "The opencalendar webapplication.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -11,7 +11,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lucahuber/opencalendar"
+    "url": "https://github.com/JoelAndLuca/opencalendar"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
