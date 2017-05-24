@@ -18,6 +18,7 @@
     "ejs": "^2.5.6",
     "express": "^4.15.3",
     "mongoose": "^4.10.0",
+    "rollbar": "^2.0.2",
     "serve-favicon": "^2.4.3"
   },
   "devDependencies": {
