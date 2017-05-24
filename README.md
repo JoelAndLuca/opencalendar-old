@@ -1,4 +1,5 @@
 [![Heroku](https://heroku-badge.herokuapp.com/?app=jkl-opencalendar)](https://jkl-opencalendar.herokuapp.com/)
+[![Build Status](https://travis-ci.org/JoelAndLuca/opencalendar.svg?branch=master)](https://travis-ci.org/JoelAndLuca/opencalendar)
 
 # open-calendar
 Open-calendar is an online calendar that doesn't require login or auth. You create a calendar and get a permalink. Anyone with that permalink can use the calendar.
