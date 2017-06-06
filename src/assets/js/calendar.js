@@ -119,7 +119,7 @@ function initializeCalendar(value, animationDirection) {
     var liFiller = "<li class='filler'></li>";
     var firstDayOfMonth = moment();
     firstDayOfMonth.day(1);
-    firstDayOfMonth.month(value.month() - 1);
+    firstDayOfMonth.month(value.month());
     firstDayOfMonth.year(value.year());
     var firstDate = firstDayOfMonth.day();
     var dateCount = 1;
