@@ -122,16 +122,18 @@ function initializeCalendar(value, animationDirection) {
     firstDayOfMonth.month(value.month());
     firstDayOfMonth.year(value.year());
     var firstDate = firstDayOfMonth.day();
+    var dateCount = 1;
     for(i = 1; i <= (6*7); i++) {
         var contentString = "";
-        if(i < firstDate || i > daysInMonth) {
+        if(i < firstDate || dateCount > daysInMonth) {
             contentString = liFiller;
         } else {
-            if(i == value.date() && displayCurrent) {
-                contentString = "<li class='current today' date='" + i + "'>" + i + "</li>";
+            if(dateCount == value.date() && displayCurrent) {
+                contentString = "<li class='current today' date='" + dateCount + "'>" + dateCount + "</li>";
             } else {
-                contentString = "<li date='" + i + "'>" + i + "</li>";
+                contentString = "<li date='" + dateCount + "'>" + dateCount + "</li>";
             }
+            dateCount  ++;
         }
         var date = {
             content: contentString

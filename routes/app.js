@@ -26,4 +26,8 @@ router.get('/:calId?', function(req, res, next) {
     }
 });
 
+router.get('/robots.txt', function(req, res, next) {
+    res.sendStatus(404);
+});
+
 module.exports = router;
